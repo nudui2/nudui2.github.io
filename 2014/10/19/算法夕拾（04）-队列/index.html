@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>算法夕拾（04）--队列 | 受命于天</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="队列特点 一段连续的内存空间（存疑） 先进先出 put（入队）、poll（出队） 可由数组、链表实现 顺序队列、循环队列 head(头) , tail(尾)  顺序队列会造成“假上溢”（head已经poll之后，再put时却无法使用原head位置的内存），于是应使用循环队列  实现12345678910111213141516171819202122232425262728293031323334">
+  <meta name="description" content="队列特点 一段连续的内存空间（存疑） 先进先出 put（入队）、poll（出队） 可由数组、链表实现 顺序队列、循环队列 head(头) , tail(尾)">
 <meta name="keywords" content="存疑,算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法夕拾（04）--队列">
 <meta property="og:url" content="http://yoursite.com/2014/10/19/算法夕拾（04）-队列/index.html">
 <meta property="og:site_name" content="受命于天">
-<meta property="og:description" content="队列特点 一段连续的内存空间（存疑） 先进先出 put（入队）、poll（出队） 可由数组、链表实现 顺序队列、循环队列 head(头) , tail(尾)  顺序队列会造成“假上溢”（head已经poll之后，再put时却无法使用原head位置的内存），于是应使用循环队列  实现12345678910111213141516171819202122232425262728293031323334">
-<meta property="og:updated_time" content="2017-05-09T16:00:16.092Z">
+<meta property="og:description" content="队列特点 一段连续的内存空间（存疑） 先进先出 put（入队）、poll（出队） 可由数组、链表实现 顺序队列、循环队列 head(头) , tail(尾)">
+<meta property="og:updated_time" content="2017-05-09T16:33:09.507Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法夕拾（04）--队列">
-<meta name="twitter:description" content="队列特点 一段连续的内存空间（存疑） 先进先出 put（入队）、poll（出队） 可由数组、链表实现 顺序队列、循环队列 head(头) , tail(尾)  顺序队列会造成“假上溢”（head已经poll之后，再put时却无法使用原head位置的内存），于是应使用循环队列  实现12345678910111213141516171819202122232425262728293031323334">
+<meta name="twitter:description" content="队列特点 一段连续的内存空间（存疑） 先进先出 put（入队）、poll（出队） 可由数组、链表实现 顺序队列、循环队列 head(头) , tail(尾)">
   
   
     <link rel="icon" href="/favicon.png">
@@ -166,9 +166,9 @@
 <li>put（入队）、poll（出队）</li>
 <li>可由数组、链表实现</li>
 <li>顺序队列、循环队列</li>
-<li>head(头) , tail(尾)</li>
+<li>head(头) , tail(尾)<a id="more"></a>
+顺序队列会造成“假上溢”（head已经poll之后，再put时却无法使用原head位置的内存），于是应使用循环队列 </li>
 </ul>
-<p>顺序队列会造成“假上溢”（head已经poll之后，再put时却无法使用原head位置的内存），于是应使用循环队列 </p>
 <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">package Queue;</div><div class="line"></div><div class="line">/**</div><div class="line"> * </div><div class="line"> * </div><div class="line"> * @author jack</div><div class="line"> * 2016年11月19日 上午1:37:17</div><div class="line"> */</div><div class="line">public class Queue &#123;</div><div class="line">	//  h       t</div><div class="line">	// [0,1,2,3,4]</div><div class="line">	private Object[] arr;</div><div class="line">	int head = 0;</div><div class="line">	int tail = 0; // tail处不存储元素</div><div class="line"></div><div class="line">	public Queue(int cap) &#123;</div><div class="line">		arr = new Object[cap];</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	// 入队</div><div class="line">	public boolean put(Object object) throws Exception &#123;</div><div class="line">		if (isFull()) &#123;</div><div class="line">			throw new Exception(&quot;The queue is full now&quot;);</div><div class="line">		&#125;</div><div class="line">		arr[tail] = object;</div><div class="line">		tail = (tail + 1) % arr.length;</div><div class="line">		return true;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	// 出队</div><div class="line">	public Object poll() throws Exception &#123;</div><div class="line">		if (isEmpty()) &#123;</div><div class="line">			throw new Exception(&quot;The queue is empty now&quot;);</div><div class="line">		&#125;</div><div class="line">		Object result = arr[head];</div><div class="line">		head = (head + 1) % arr.length;</div><div class="line">		return result;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	// 判断是否满</div><div class="line">	public boolean isFull() &#123;</div><div class="line">		return head == (tail + 1) % arr.length;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	// 判断是否空</div><div class="line">	public boolean isEmpty() &#123;</div><div class="line">		return head == tail;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	// 获得队顶元素</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       

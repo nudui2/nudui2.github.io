@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>算法夕拾（02）--集合、散列表 | 受命于天</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="何谓集合 基于数组的拓展，无长度限制。 列表：有序集合。链表、队列、栈。使用数组实现。 集：无序、数据不能重复。使用散列表实现。 多重集：无序、数据可重复。可通过排序转换为列表。（不知道是什么鬼，没用过） 数、图：略。  列表特点（变长数组） 变长。在不够长的时候通过数组拷贝的方式创建新数组。 拷贝的方式会造成性能耗损。 查询欠佳。 查询、修改的时间复杂度为O(n)。 查找顺序存储的结构类型，在数">
+  <meta name="description" content="何谓集合 基于数组的拓展，无长度限制。 列表：有序集合。链表、队列、栈。使用数组实现。 集：无序、数据不能重复。使用散列表实现。 多重集：无序、数据可重复。可通过排序转换为列表。（不知道是什么鬼，没用过） 数、图：略。">
 <meta name="keywords" content="存疑,算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法夕拾（02）--集合、散列表">
 <meta property="og:url" content="http://yoursite.com/2014/10/17/算法夕拾（02）-集合/index.html">
 <meta property="og:site_name" content="受命于天">
-<meta property="og:description" content="何谓集合 基于数组的拓展，无长度限制。 列表：有序集合。链表、队列、栈。使用数组实现。 集：无序、数据不能重复。使用散列表实现。 多重集：无序、数据可重复。可通过排序转换为列表。（不知道是什么鬼，没用过） 数、图：略。  列表特点（变长数组） 变长。在不够长的时候通过数组拷贝的方式创建新数组。 拷贝的方式会造成性能耗损。 查询欠佳。 查询、修改的时间复杂度为O(n)。 查找顺序存储的结构类型，在数">
-<meta property="og:updated_time" content="2017-05-09T16:00:16.091Z">
+<meta property="og:description" content="何谓集合 基于数组的拓展，无长度限制。 列表：有序集合。链表、队列、栈。使用数组实现。 集：无序、数据不能重复。使用散列表实现。 多重集：无序、数据可重复。可通过排序转换为列表。（不知道是什么鬼，没用过） 数、图：略。">
+<meta property="og:updated_time" content="2017-05-09T16:33:09.507Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法夕拾（02）--集合、散列表">
-<meta name="twitter:description" content="何谓集合 基于数组的拓展，无长度限制。 列表：有序集合。链表、队列、栈。使用数组实现。 集：无序、数据不能重复。使用散列表实现。 多重集：无序、数据可重复。可通过排序转换为列表。（不知道是什么鬼，没用过） 数、图：略。  列表特点（变长数组） 变长。在不够长的时候通过数组拷贝的方式创建新数组。 拷贝的方式会造成性能耗损。 查询欠佳。 查询、修改的时间复杂度为O(n)。 查找顺序存储的结构类型，在数">
+<meta name="twitter:description" content="何谓集合 基于数组的拓展，无长度限制。 列表：有序集合。链表、队列、栈。使用数组实现。 集：无序、数据不能重复。使用散列表实现。 多重集：无序、数据可重复。可通过排序转换为列表。（不知道是什么鬼，没用过） 数、图：略。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -165,9 +165,8 @@
 <li><strong>列表</strong>：有序集合。链表、队列、栈。使用数组实现。</li>
 <li><strong>集</strong>：无序、数据不能重复。使用散列表实现。</li>
 <li><strong>多重集</strong>：无序、数据可重复。可通过排序转换为列表。（不知道是什么鬼，没用过）</li>
-<li><strong>数、图</strong>：略。</li>
-</ul>
-<h3 id="列表特点（变长数组）"><a href="#列表特点（变长数组）" class="headerlink" title="列表特点（变长数组）"></a>列表特点（变长数组）</h3><ul>
+<li><strong>数、图</strong>：略。<a id="more"></a>
+<h3 id="列表特点（变长数组）"><a href="#列表特点（变长数组）" class="headerlink" title="列表特点（变长数组）"></a>列表特点（变长数组）</h3></li>
 <li>变长。在不够长的时候通过数组拷贝的方式创建新数组。</li>
 <li>拷贝的方式会造成性能耗损。</li>
 <li>查询欠佳。</li>

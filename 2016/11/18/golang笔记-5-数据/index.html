@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>golang笔记-5-数据 | 受命于天</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="字符串字符串为不可变字节（byte）序列，是符合结构。 1234type stringStruct struct&amp;#123;    str unsafe.Pointer    len int&amp;#125; 头部指针指向数组，无NULL结尾，默认为UTF-8存储Unicode字符。 len返回的是数组的字节长度。 123456789func main()&amp;#123;    s := &amp;quot;a&amp;q">
+  <meta name="description" content="字符串字符串为不可变字节（byte）序列，是符合结构。 1234type stringStruct struct&amp;#123;    str unsafe.Pointer    len int&amp;#125; 头部指针指向数组，无NULL结尾，默认为UTF-8存储Unicode字符。 len返回的是数组的字节长度。">
 <meta name="keywords" content="golang">
 <meta property="og:type" content="article">
 <meta property="og:title" content="golang笔记-5-数据">
 <meta property="og:url" content="http://yoursite.com/2016/11/18/golang笔记-5-数据/index.html">
 <meta property="og:site_name" content="受命于天">
-<meta property="og:description" content="字符串字符串为不可变字节（byte）序列，是符合结构。 1234type stringStruct struct&amp;#123;    str unsafe.Pointer    len int&amp;#125; 头部指针指向数组，无NULL结尾，默认为UTF-8存储Unicode字符。 len返回的是数组的字节长度。 123456789func main()&amp;#123;    s := &amp;quot;a&amp;q">
-<meta property="og:updated_time" content="2017-05-09T16:00:16.091Z">
+<meta property="og:description" content="字符串字符串为不可变字节（byte）序列，是符合结构。 1234type stringStruct struct&amp;#123;    str unsafe.Pointer    len int&amp;#125; 头部指针指向数组，无NULL结尾，默认为UTF-8存储Unicode字符。 len返回的是数组的字节长度。">
+<meta property="og:updated_time" content="2017-05-09T16:33:09.506Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="golang笔记-5-数据">
-<meta name="twitter:description" content="字符串字符串为不可变字节（byte）序列，是符合结构。 1234type stringStruct struct&amp;#123;    str unsafe.Pointer    len int&amp;#125; 头部指针指向数组，无NULL结尾，默认为UTF-8存储Unicode字符。 len返回的是数组的字节长度。 123456789func main()&amp;#123;    s := &amp;quot;a&amp;q">
+<meta name="twitter:description" content="字符串字符串为不可变字节（byte）序列，是符合结构。 1234type stringStruct struct&amp;#123;    str unsafe.Pointer    len int&amp;#125; 头部指针指向数组，无NULL结尾，默认为UTF-8存储Unicode字符。 len返回的是数组的字节长度。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -164,6 +164,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">type stringStruct struct&#123;</div><div class="line">    str unsafe.Pointer</div><div class="line">    len int</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>头部指针指向数组，无NULL结尾，默认为UTF-8存储Unicode字符。</p>
 <p>len返回的是数组的字节长度。</p>
+<a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">func main()&#123;</div><div class="line">    s := &quot;a&quot;</div><div class="line">    fmt.Println(s[0])   //  97</div><div class="line">    </div><div class="line">    fmt.Println(&amp;s[0])   //  报错：cannot take the address of s[0]</div><div class="line">    </div><div class="line">    s = s + &quot;b&quot;</div><div class="line">    fmt.Println(s &gt; &quot;aa&quot;)   //true</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>字符串遍历<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">func main()&#123;</div><div class="line">    s := &quot;受命于天&quot;</div><div class="line">    for i := 0; i &lt; len(s); i++ &#123;</div><div class="line">        fmt.Println(s[i])       //输出其byte ， 4 * 3 = 12 个字节</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    for index, val := range s &#123;</div><div class="line">        fmt.Println(index, val)        //输出每个汉字</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>修改字符串<br>要求改字符串，须将其转换为可变类型（[ ]rune 或者 [ ]byte），修改之后再转回来。但，不管如何转换，都必定重新分配内存并复制数据。</p>

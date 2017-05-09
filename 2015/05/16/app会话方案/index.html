@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>app会话方案 | 受命于天</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="与web开发不同点 web中有浏览器角色，保持用户登录状态可以根据cookie、sessionid等策略来实现。 而app不能（或不方便、不能自定义内容），开发者需要进行面向app的模拟session实现。   借助工具 memcached\redis或其他进程外缓存。  实现过程 在db中创建auth表，须包含字段：id , userid(或mobile), auth , createtime。">
+  <meta name="description" content="与web开发不同点 web中有浏览器角色，保持用户登录状态可以根据cookie、sessionid等策略来实现。 而app不能（或不方便、不能自定义内容），开发者需要进行面向app的模拟session实现。">
 <meta name="keywords" content="app,auth">
 <meta property="og:type" content="article">
 <meta property="og:title" content="app会话方案">
 <meta property="og:url" content="http://yoursite.com/2015/05/16/app会话方案/index.html">
 <meta property="og:site_name" content="受命于天">
-<meta property="og:description" content="与web开发不同点 web中有浏览器角色，保持用户登录状态可以根据cookie、sessionid等策略来实现。 而app不能（或不方便、不能自定义内容），开发者需要进行面向app的模拟session实现。   借助工具 memcached\redis或其他进程外缓存。  实现过程 在db中创建auth表，须包含字段：id , userid(或mobile), auth , createtime。">
-<meta property="og:updated_time" content="2017-05-09T16:00:16.090Z">
+<meta property="og:description" content="与web开发不同点 web中有浏览器角色，保持用户登录状态可以根据cookie、sessionid等策略来实现。 而app不能（或不方便、不能自定义内容），开发者需要进行面向app的模拟session实现。">
+<meta property="og:updated_time" content="2017-05-09T16:33:09.506Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="app会话方案">
-<meta name="twitter:description" content="与web开发不同点 web中有浏览器角色，保持用户登录状态可以根据cookie、sessionid等策略来实现。 而app不能（或不方便、不能自定义内容），开发者需要进行面向app的模拟session实现。   借助工具 memcached\redis或其他进程外缓存。  实现过程 在db中创建auth表，须包含字段：id , userid(或mobile), auth , createtime。">
+<meta name="twitter:description" content="与web开发不同点 web中有浏览器角色，保持用户登录状态可以根据cookie、sessionid等策略来实现。 而app不能（或不方便、不能自定义内容），开发者需要进行面向app的模拟session实现。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -162,7 +162,8 @@
       
         <h3 id="与web开发不同点"><a href="#与web开发不同点" class="headerlink" title="与web开发不同点"></a>与web开发不同点</h3><ul>
 <li>web中有浏览器角色，保持用户登录状态可以根据cookie、sessionid等策略来实现。</li>
-<li>而app不能（或不方便、不能自定义内容），开发者需要进行面向app的模拟session实现。</li>
+<li>而app不能（或不方便、不能自定义内容），开发者需要进行面向app的模拟session实现。  <a id="more"></a>
+</li>
 </ul>
 <hr>
 <h3 id="借助工具"><a href="#借助工具" class="headerlink" title="借助工具"></a>借助工具</h3><ul>

@@ -218,15 +218,10 @@
       
         <h3 id="ssh免密登录"><a href="#ssh免密登录" class="headerlink" title="ssh免密登录"></a>ssh免密登录</h3><ol>
 <li>将本地.ssh目录下的id_rsa.pub文件内容拷贝。</li>
-<li>远程登录，到相应的.ssh目录下，将1中内容拷贝至authorized_keys中。</li>
-</ol>
-<h3 id="注"><a href="#注" class="headerlink" title="注"></a>注</h3><ol>
-<li>chmod 700 ~/.ssh</li>
-<li>chmod 600 ~/.ssh/authorized_keys </li>
-</ol>
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>本机，ssh git@1.1.1.1</p>
-<h3 id="搭建git"><a href="#搭建git" class="headerlink" title="搭建git"></a>搭建git</h3><p><a href="https://segmentfault.com/a/1190000002729796#articleHeader7" target="_blank" rel="external">https://segmentfault.com/a/1190000002729796#articleHeader7</a></p>
-
+<li>远程登录，到相应的.ssh目录下，将1中内容拷贝至authorized_keys中。
+        
+          <a class="article-more-a" href="/2016/12/04/ssh免密/#more">more >></a>
+        
       
 
       
@@ -284,22 +279,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><h4 id="Q：接口一般规则"><a href="#Q：接口一般规则" class="headerlink" title="Q：接口一般规则"></a>Q：接口一般规则</h4><p><strong>A</strong>：参照：<br><a href="http://nudui.github.io/2015/05/16/api%E6%8E%A5%E5%8F%A3%E8%A7%84%E5%88%99/" target="_blank" rel="external">http://nudui.github.io/2015/05/16/api%E6%8E%A5%E5%8F%A3%E8%A7%84%E5%88%99/</a></p>
-<h4 id="Q：如何保持会话-登录时到底发生了神马"><a href="#Q：如何保持会话-登录时到底发生了神马" class="headerlink" title="Q：如何保持会话,登录时到底发生了神马"></a>Q：如何保持会话,登录时到底发生了神马</h4><p><strong>A</strong>：不建议使用httpsession，如果用httpsession，则须做好session共享策略。我的方案：<a href="http://nudui.github.io/2015/05/16/app%E4%BC%9A%E8%AF%9D%E6%96%B9%E6%A1%88/" target="_blank" rel="external">http://nudui.github.io/2015/05/16/app%E4%BC%9A%E8%AF%9D%E6%96%B9%E6%A1%88/</a></p>
-<p><strong>标注一下</strong>：这个方案不是我原创，是跟一老大哥学的，消化了好一阵时间。（不过，当我消化了这个方案，这应该就算是我的了吧）</p>
-<h4 id="Q：如果有人刷我的接口肿么办"><a href="#Q：如果有人刷我的接口肿么办" class="headerlink" title="Q：如果有人刷我的接口肿么办"></a>Q：如果有人刷我的接口肿么办</h4><p><strong>A</strong>：最近我刚刷了一个场子不小的app的短信验证码接口，<strong>详情    </strong>及<strong> 解决办法 </strong>请看如下：<a href="http://blog.csdn.net/z744760295/article/details/53345113" target="_blank" rel="external">http://blog.csdn.net/z744760295/article/details/53345113</a></p>
-<h4 id="Q：选用云存储还是自存储"><a href="#Q：选用云存储还是自存储" class="headerlink" title="Q：选用云存储还是自存储"></a>Q：选用云存储还是自存储</h4><p><strong>A</strong>：前期建议选用云存储，云存储平台都会有免费额度。七牛云提供10G空间，100万次GET请求；阿里云提供5G，请求次数也不会太低，团队初期足够了。</p>
-<h4 id="Q：那如果有一天leader要求存储必须自有化，那已在db中存储的云资源uri怎么办"><a href="#Q：那如果有一天leader要求存储必须自有化，那已在db中存储的云资源uri怎么办" class="headerlink" title="Q：那如果有一天leader要求存储必须自有化，那已在db中存储的云资源uri怎么办"></a>Q：那如果有一天leader要求存储必须自有化，那已在db中存储的云资源uri怎么办</h4><p><strong>A</strong>：使用云存储之前，就必须得考虑好这个问题，七牛和ali都提供自定义域名服务，在自己的域名下做配置，这样图片uri就是通过自有域名进行资源定位。此时，将云中有用的图片下载，根据路径进行文件服务器配置即可。这样，原存储云的文件就可以转入自有服务器，且uri不会改变。</p>
-<h4 id="Q：如果我想一直使用云，某天10G空间不够了怎么办"><a href="#Q：如果我想一直使用云，某天10G空间不够了怎么办" class="headerlink" title="Q：如果我想一直使用云，某天10G空间不够了怎么办"></a>Q：如果我想一直使用云，某天10G空间不够了怎么办</h4><p><strong>A</strong>：我这有个投机取巧的办法：如果某天在七牛上的空间已经使用85%，这时就着手再申请一个账号好了，在服务端代码中改一下七牛的配置，切换到第二个账号，这不就ok了吗，原uri不必去管，反正七牛也不会删掉（七牛也不知道这两个账号有啥关联），不过在第二个账号绑定域名时，还是再开一个子域名比较好，不要对第一个账号的资源进行侵扰。</p>
-<h4 id="Q：如果某天七牛发现我的小聪明，把我封掉怎么办"><a href="#Q：如果某天七牛发现我的小聪明，把我封掉怎么办" class="headerlink" title="Q：如果某天七牛发现我的小聪明，把我封掉怎么办"></a>Q：如果某天七牛发现我的小聪明，把我封掉怎么办</h4><p><strong>A</strong>：无论是哪个云，在封号前必定多方联络你，这时可把那些云图片资源取出，再放入其他的云，执行同样的策略。</p>
-<h4 id="Q：如果其他的云也封怎么办，不能一直这样下去啊"><a href="#Q：如果其他的云也封怎么办，不能一直这样下去啊" class="headerlink" title="Q：如果其他的云也封怎么办，不能一直这样下去啊"></a>Q：如果其他的云也封怎么办，不能一直这样下去啊</h4><p><strong>A</strong>：上述策略，都是为了省！省！省！省，则必定有一些荆棘。不过，就算是这个云把你封掉，也不见得就没办法。【微博】或者其他大sns，它肯定不会删图片，它还开放了各种接口，咱们可以把微博变成我们的图片服务器，这样不就好了吗。微博的水印问题，网上能找到设置方法。<strong>不过，把微博改成自己的文件服务器，是不是挺cool的</strong>。</p>
-<h4 id="Q：短信接口都有验证码条数限制，这个也能有对策吧"><a href="#Q：短信接口都有验证码条数限制，这个也能有对策吧" class="headerlink" title="Q：短信接口都有验证码条数限制，这个也能有对策吧"></a>Q：短信接口都有验证码条数限制，这个也能有对策吧</h4><p><strong>A</strong>：没错，这个策略与云存储方案类似。单个短信平台对于验证码会有单独的限制，从3条/h ~ 7条/h 不等，我在做app的时候，也会遇到这个问题，产品要求必须每小时能发8条，打电话给短信客服，确实是可以增加。但是，总觉着不舒服，于是有了以下的方案：在阿里大鱼上申请两个（或多个）账号，短信签名全部一致（不要质疑短信平台是否会允许，亲测有效，反馈给阿里大鱼，人家说没遇到过这种情况，也就默许了）。之后再代码中，只要第一个账号发送失败，就走第二个账号。</p>
-<p>当然，如果不嫌麻烦，也可以使用多个不同平台的方式，只是每个平台的接口都不一样。使用单平台多账号，好处是扩展方便，不用改多少代码。</p>
-<h4 id="Q：app版本控制怎么玩"><a href="#Q：app版本控制怎么玩" class="headerlink" title="Q：app版本控制怎么玩"></a>Q：app版本控制怎么玩</h4><p><strong>A</strong>：看到网上好多人说单独开一个接口，判断是否需要更新app。这个方案还可以吧，只是需要移动端每次打开app时请求服务端，略有些麻烦。<strong>其实大可不必，服务端完全不需要开辟单独接口</strong>：移动每次与服务端交互，服务端在header中能获取这个请求的具体版本号，缓存必须更新的版本号的value，在拦截器中计算这个版本号的value，看看是否需要强制更新，如果需要，则在拦截器阶段就返回错误码给app，app根据错误码进行提示、下载。<strong><em>这个方案的好处是</em></strong>，无须移动开发人员做太多，覆盖面广，网上的方案只有在特定某个动作触发校验，我的方案是全局校验。</p>
-<h4 id="Q：有的app（回家吃饭app），换了个账号登录，竟然收到了原账号的消息，这咋回事"><a href="#Q：有的app（回家吃饭app），换了个账号登录，竟然收到了原账号的消息，这咋回事" class="headerlink" title="Q：有的app（回家吃饭app），换了个账号登录，竟然收到了原账号的消息，这咋回事"></a>Q：有的app（回家吃饭app），换了个账号登录，竟然收到了原账号的消息，这咋回事</h4><p><strong>A</strong>：‘回家吃饭’这个app，业务真的不错，不过它确实有那个问题（八月份的时候）。</p>
-<p><strong>先来说说这是怎么发生的：</strong>app登录后，会将devicetoken发送给服务端，服务端将devicetoken与用户id进行绑定（允许一个账号多点登录），这样每次需要push的时候，就可以根据devicetoken进行定向push。那为什么会收到原账号的push呢，因为只  <strong>做了bind，没做unbind</strong> ，‘回家吃饭’没考虑     <strong>app不重新下载而换号登录</strong> 的问题（重新下载app时，devicetoken会发生变化）！</p>
-<p><strong>怎么解决：</strong>退出登录时服务端必须<strong>解绑</strong>相应的devicetoken。</p>
-<h3 id="注：-本人水平有限"><a href="#注：-本人水平有限" class="headerlink" title="注： 本人水平有限"></a>注： 本人水平有限</h3>
+        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><h4 id="Q：接口一般规则"><a href="#Q：接口一般规则" class="headerlink" title="Q：接口一般规则"></a>Q：接口一般规则</h4><p><strong>A</strong>：参照：<br><a href="http://nudui.github.io/2015/05/16/api%E6%8E%A5%E5%8F%A3%E8%A7%84%E5%88%99/" target="_blank" rel="external">http://nudui.github.io/2015/05/16/api%E6%8E%A5%E5%8F%A3%E8%A7%84%E5%88%99/</a><br>
+        
+          <a class="article-more-a" href="/2016/11/26/服务端开发的一些小问题/#more">more >></a>
+        
       
 
       
@@ -387,40 +370,10 @@
 <li>参数s：应该是对url进行签名</li>
 <li>参数t：时间戳</li>
 <li>参数mobile：接收短信验证码的手机</li>
-<li>http/1.1 : http协议</li>
-</ul>
-<p>圈2：</p>
-<ul>
-<li>cookie：该团队应该是原做web，习惯于cookie、session的模式（当然，这个路子是正确的，只是这个名字…暴露了自己的历史包袱）。在app中通过在header中添加参数来实现。此处与本题无关。</li>
-</ul>
-<p>圈3：</p>
-<ul>
-<li>ChannelId：一个对于业务相关的参数，无甚可说。</li>
-<li>token：应该是对设备的唯一标识吧。应该不是auth，毕竟还没登录，何来auth。</li>
-</ul>
-<p>从上可知，模拟这个【发送短信验证码】请求，最多需要这么几个参数即可。笔者用postman实践，cookie可以不用管它（话说，这个cookie真的有价值吗？），传不传都无所谓。参数t，对方只用于签名算法。</p>
-<p>综上，需要参数s、t、参数mobile、参数Channel（放在header中）、参数token（放在header中）。</p>
-<h3 id="模拟开始"><a href="#模拟开始" class="headerlink" title="模拟开始"></a>模拟开始</h3><p><strong>某月24日：</strong></p>
-<p><img src="http://7q5c85.com1.z0.glb.clouddn.com/%E6%A8%A1%E6%8B%9Fapi.png" alt="image description"></p>
-<p>诸位应当看到，笔者已经告知对方（通过一个多余的参数“tip”），该接口（或者整个app的所有接口），都有可能被模拟，希望对方能够进行修改。<strong>注：</strong>笔者手机号也在区间内，收到了通过程序发送的短信验证码。</p>
-<p><strong>次日：</strong></p>
-<p><img src="http://7q5c85.com1.z0.glb.clouddn.com/ciri.png" alt="image description"></p>
-<p>对方完全任由刷。</p>
-<h3 id="模拟后话"><a href="#模拟后话" class="headerlink" title="模拟后话"></a>模拟后话</h3><ol>
-<li>次日的再次模拟，依然请求成功（笔者的手机号在此序列）。</li>
-<li>对方将笔者ip做了特殊处理（此项排除，笔者手机收到了验证码）。</li>
-<li>对方没有看到相应日志，没有发现接口已经被模拟。（不太可能，毕竟不是小team，就算是小team，也早该发现）</li>
-<li>对方没有看到tip参数，没有在日志中记录收到的全部参数。（感觉还是不可能，都不是小作坊，我这一个岗位一个人的小摊子还会注意到这点。。）</li>
-<li>原因究竟是什么呢？</li>
-</ol>
-<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><ol>
-<li>笔者毕业三年，路已偏歪，没在大型厂子待过。</li>
-<li>可能笔者的整篇文章会见笑于大方家（大神甲：这年轻人太嫩，自以为破解了这个app，其实。。）</li>
-<li>不是hacker（水平真的达不到，差的不是一点），却心向往之。</li>
-<li><strong><strong>个人对于接口安全的方案</strong></strong>（方案师承毕业时的团队）：<a href="http://nudui.online/2015/05/16/api接口规则/" target="_blank" rel="external">http://nudui.online/2015/05/16/api接口规则/</a>。</li>
-<li>求明白人告诉我，我这到底是不是班门弄斧。</li>
-</ol>
-
+<li>http/1.1 : http协议
+        
+          <a class="article-more-a" href="/2016/11/25/刷app短信接口-接口安全考究/#more">more >></a>
+        
       
 
       
@@ -504,17 +457,10 @@
       
         <h3 id="start"><a href="#start" class="headerlink" title="start"></a>start</h3><p>get beego : <a href="https://my.oschina.net/ichendong/blog/761467" target="_blank" rel="external">https://my.oschina.net/ichendong/blog/761467</a></p>
 <p>gov docs : <a href="https://beego.me" target="_blank" rel="external">https://beego.me</a></p>
-<h3 id="sublime"><a href="#sublime" class="headerlink" title="sublime"></a>sublime</h3><p>mac环境下快速启动工作目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rm /usr/local/bin/subl</div><div class="line"></div><div class="line">ln -s &quot;/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl&quot; /usr/local/bin/subl</div></pre></td></tr></table></figure>
-<p>在 ~/ 目录下创建.sh</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim work_hello.sh</div></pre></td></tr></table></figure>
-<p>work_hello.sh ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">subl /Users/jack/gopath/src/hello</div></pre></td></tr></table></figure></p>
-<p>对该sh赋予执行权限</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod 777 work_hello.sh</div></pre></td></tr></table></figure>
-<p>开始工作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd</div><div class="line">./work_hello.sh</div></pre></td></tr></table></figure>
-<p>自动在sublime中打开工作空间。如有多个工作空间，则在~/目录下创建多个sh即可</p>
-
+<h3 id="sublime"><a href="#sublime" class="headerlink" title="sublime"></a>sublime</h3><p>mac环境下快速启动工作目录<br>
+        
+          <a class="article-more-a" href="/2016/11/21/beego-01/#more">more >></a>
+        
       
 
       
@@ -662,10 +608,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">type stringStruct struct&#123;</div><div class="line">    str unsafe.Pointer</div><div class="line">    len int</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>头部指针指向数组，无NULL结尾，默认为UTF-8存储Unicode字符。</p>
 <p>len返回的是数组的字节长度。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">func main()&#123;</div><div class="line">    s := &quot;a&quot;</div><div class="line">    fmt.Println(s[0])   //  97</div><div class="line">    </div><div class="line">    fmt.Println(&amp;s[0])   //  报错：cannot take the address of s[0]</div><div class="line">    </div><div class="line">    s = s + &quot;b&quot;</div><div class="line">    fmt.Println(s &gt; &quot;aa&quot;)   //true</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>字符串遍历<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">func main()&#123;</div><div class="line">    s := &quot;受命于天&quot;</div><div class="line">    for i := 0; i &lt; len(s); i++ &#123;</div><div class="line">        fmt.Println(s[i])       //输出其byte ， 4 * 3 = 12 个字节</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    for index, val := range s &#123;</div><div class="line">        fmt.Println(index, val)        //输出每个汉字</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>修改字符串<br>要求改字符串，须将其转换为可变类型（[ ]rune 或者 [ ]byte），修改之后再转回来。但，不管如何转换，都必定重新分配内存并复制数据。</p>
-
+        
+          <a class="article-more-a" href="/2016/11/18/golang笔记-5-数据/#more">more >></a>
+        
       
 
       
@@ -743,17 +688,10 @@
 <li>支持不定长变参。</li>
 <li>支持<strong>多返回值</strong>。</li>
 <li>支持命名返回值。</li>
-<li>支持<strong>匿名函数</strong>与<strong>闭包</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">func hello()&#123;</div><div class="line">    fmt.Println(&quot;hello world&quot;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">func exec(f func())&#123;    //函数作为参数</div><div class="line">    f()</div><div class="line">&#125;</div><div class="line"></div><div class="line">func main()&#123;</div><div class="line">    h := hello  </div><div class="line">    exec(h)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>函数只能判断是否为nil，不能判断其他</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">func a ()&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">func b()&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">func main()&#123;</div><div class="line">    fmt.Println(a == nil)     // 输出 false  </div><div class="line">    fmt.Pringln(a == b)       //报错，无效操作</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><ul>
-<li>无论是指针、引用类型还是其他类型参数，都是<strong>值传递</strong>。区别无非是<strong>拷贝</strong>目标对象还是拷贝指针。在函数内对参数进行操作，都不会影响原值。</li>
-<li>在函数调用前，会为形参和返回值分配内存空间，并将实参拷贝到形参的内存上。</li>
-</ul>
-<h4 id="变参"><a href="#变参" class="headerlink" title="变参"></a>变参</h4><p>变参实际上是一个切片。只能接收同类型参数</p>
-
+<li>支持<strong>匿名函数</strong>与<strong>闭包</strong>
+        
+          <a class="article-more-a" href="/2016/11/17/golang笔记-4-函数/#more">more >></a>
+        
       
 
       
@@ -823,43 +761,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><h5 id="25个关键字"><a href="#25个关键字" class="headerlink" title="25个关键字"></a>25个关键字</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">break continue, if else , go chan , var const type </div><div class="line"></div><div class="line">for range , go goto defer , switch case default fallthrough</div><div class="line"></div><div class="line">package import , func struct return map select</div></pre></td></tr></table></figure>
-<h3 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h3><h4 id="if-else"><a href="#if-else" class="headerlink" title="if .. else .."></a>if .. else ..</h4><ul>
-<li><p>表达式的值必须是bool类型。</p>
-</li>
-<li><p>表达式可以执行初始化语句。如下 :</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var x int </div><div class="line"></div><div class="line">func xinit()&#123;</div><div class="line">    x = 1000</div><div class="line">&#125;</div><div class="line"></div><div class="line">func main()&#123;</div><div class="line">    if xinit(); x &gt; 100&#123;</div><div class="line">        ... //  可以执行</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="switch-case"><a href="#switch-case" class="headerlink" title="switch case"></a>switch case</h4><p>无须break，自动在相应的case处执行完毕中断</p>
-<ul>
-<li>一般形式 </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">func main()&#123;</div><div class="line">    a , b , c := 0 , 1 , 2</div><div class="line">    </div><div class="line">    switch x &#123;</div><div class="line">        case a , b : </div><div class="line">            fmt.Println(&quot;0 或者 1&quot;)</div><div class="line">        case 4 : </div><div class="line">            fmt.Println(&quot;值为4&quot;)</div><div class="line">        default : </div><div class="line">            fmt.Println(&quot;default value&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>表达式形式</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">func main()&#123;</div><div class="line">    a , b , c := 0 , 1 , 2</div><div class="line">    </div><div class="line">    switch x := 100 ; x &#123;</div><div class="line">        case a , b : </div><div class="line">            fmt.Println(&quot;0 或者 1&quot;)</div><div class="line">        case 4 : </div><div class="line">            fmt.Println(&quot;值为4&quot;)</div><div class="line">        default : </div><div class="line">            fmt.Println(&quot;default value&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>fallthrough   必须放在case块的末尾</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">func main()&#123;</div><div class="line">    </div><div class="line">    switch x := 100 ; x &#123;</div><div class="line">        case a , b : </div><div class="line">            fmt.Println(&quot;0 或者 1&quot;)</div><div class="line">        case 100 : </div><div class="line">            x += 10</div><div class="line">            fmt.Println(x)</div><div class="line">            </div><div class="line">            fallthrough     //无条件执行下一个case，default除外。</div><div class="line">        case 101 :</div><div class="line">            x += 10</div><div class="line">            fmt.Println(x)</div><div class="line">                            //如果还有fallthrough，则继续执行下一个非default的case</div><div class="line">        default : </div><div class="line">            fmt.Println(&quot;default value&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>注意：</p>
-<ol>
-<li>不能出现重复的case。</li>
-<li>有时switch可代替if语句。</li>
-</ol>
-<h4 id="for"><a href="#for" class="headerlink" title="for"></a>for</h4><ul>
-<li>golang中只有for这一种循环。</li>
-<li>for循环完成了java中的while循环、for..each循环。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//普通for循环</div><div class="line">for i := 0 ; i &lt; 100 ; i ++ &#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//相当于while循环</div><div class="line">for x &lt; 10 &#123;</div><div class="line">   ... </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//相当于while true</div><div class="line">for &#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><strong>for range</strong> 用于数据迭代，支持字符串、数组、数组指针、切片、字典、通道类型、键值数据</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">func main()&#123;</div><div class="line">    data := [10]int&#123;1, 2, 3, 4 &#125;</div><div class="line">    </div><div class="line">    for index , v := range data&#123;</div><div class="line">        fmt.Print(&quot;index is &quot; + index)</div><div class="line">        fmt.Println(&quot;value is &quot; + v)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+        
+          <a class="article-more-a" href="/2016/11/17/golang笔记-3-表达式/#more">more >></a>
+        
       
 
       
@@ -932,22 +836,10 @@
 <li>java</li>
 <li>《轻松学算法》。</li>
 <li><a href="https://github.com/irfen" target="_blank" rel="external">https://github.com/irfen</a></li>
-<li><a href="http://irfen.me" target="_blank" rel="external">http://irfen.me</a></li>
-</ul>
-<h3 id="无闻"><a href="#无闻" class="headerlink" title="无闻"></a>无闻</h3><ul>
-<li>golang</li>
-<li>GIT：<a href="https://github.com/Unknwon" target="_blank" rel="external">https://github.com/Unknwon</a></li>
-</ul>
-<h3 id="谢孟军"><a href="#谢孟军" class="headerlink" title="谢孟军"></a>谢孟军</h3><ul>
-<li>《Go Web编程》、beego的作者</li>
-<li><a href="https://github.com/astaxie" target="_blank" rel="external">https://github.com/astaxie</a></li>
-<li><a href="http://edu.51cto.com/lecturer/index/user_id-6177767.html" target="_blank" rel="external">http://edu.51cto.com/lecturer/index/user_id-6177767.html</a></li>
-</ul>
-<h3 id="郝林"><a href="#郝林" class="headerlink" title="郝林"></a>郝林</h3><ul>
-<li>《Go并发编程实战》作者</li>
-<li><a href="https://github.com/g0hacker" target="_blank" rel="external">https://github.com/g0hacker</a></li>
-</ul>
-
+<li><a href="http://irfen.me" target="_blank" rel="external">http://irfen.me</a>
+        
+          <a class="article-more-a" href="/2016/11/17/大神-on-Git/#more">more >></a>
+        
       
 
       
