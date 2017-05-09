@@ -137,6 +137,296 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Unity知识点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>####模块如下<br><strong>UGUI和NGUI</strong></p>
+<hr>
+<p><strong>框架：StrangIOC和UFramework</strong></p>
+<hr>
+<p><strong>碰撞检测</strong></p>
+<hr>
+<p><strong>寻路算法</strong></p>
+<hr>
+<p><strong>Shader</strong></p>
+<hr>
+<p><strong>粒子</strong></p>
+<hr>
+<p><strong>性能优化：CPU、内存</strong></p>
+<hr>
+<p><strong>第三方SDK</strong></p>
+<hr>
+<p><strong>编辑器扩展</strong></p>
+<hr>
+<p><strong>设计模式</strong></p>
+<hr>
+<ul>
+<li>1.工厂模式</li>
+<li>2.组合模式</li>
+</ul>
+<p><strong>打包AssetBundle</strong></p>
+<hr>
+<h3 id="Unity基础"><a href="#Unity基础" class="headerlink" title="Unity基础"></a><em>Unity基础</em></h3><hr>
+<h6 id="遇到的比较难的地方"><a href="#遇到的比较难的地方" class="headerlink" title="遇到的比较难的地方"></a>遇到的比较难的地方</h6><p>图形算法（内存优化、贴图UV计算）、shader、scrollview拖拉动画、聊天unity和ios端的连接（自己实现的）。</p>
+<h6 id="Unity3D多线程"><a href="#Unity3D多线程" class="headerlink" title="Unity3D多线程"></a>Unity3D多线程</h6><p>多线程好处是可以充分利用多核的优势。Unity本身是没有多线程的，但是c#是有多线程的。</p>
+<ul>
+<li>仅能从主线程中访问 Unity3D 的组件，对象和 Unity3D 系统调用。</li>
+<li>多线程始终要注意的都是同步互斥的问题，涉及到锁。</li>
+</ul>
+<h6 id="Unity3D-的协程和-C-线程之间的区别是什么？"><a href="#Unity3D-的协程和-C-线程之间的区别是什么？" class="headerlink" title="Unity3D 的协程和 C# 线程之间的区别是什么？"></a>Unity3D 的协程和 C# 线程之间的区别是什么？</h6><p>unity的协程模拟多线程，但实际上还是单线程，同一时间只能执行一个，采用的是操作系统时间片轮询的方式。</p>
+<h6 id="四元数的作用，四元数对欧拉角的优点？"><a href="#四元数的作用，四元数对欧拉角的优点？" class="headerlink" title="四元数的作用，四元数对欧拉角的优点？"></a>四元数的作用，四元数对欧拉角的优点？</h6><p>四元数用于表示旋转，相对欧拉角的优点：</p>
+<ul>
+<li>能进行增量旋转 </li>
+<li>避免万向锁 </li>
+<li>给定方位的表达方式有两种，互为负（欧拉角有无数种表达方式） </li>
+</ul>
+<h6 id="Prefab-的作用？"><a href="#Prefab-的作用？" class="headerlink" title="Prefab 的作用？"></a>Prefab 的作用？</h6><p>预制体，方便实例化和修改参数。</p>
+<h6 id="Render的作用"><a href="#Render的作用" class="headerlink" title="Render的作用"></a>Render的作用</h6><p>用来把物体渲染出来。</p>
+<h6 id="如何安全的在不同工程间安全地迁移-asset-数据？三种方法"><a href="#如何安全的在不同工程间安全地迁移-asset-数据？三种方法" class="headerlink" title="如何安全的在不同工程间安全地迁移 asset 数据？三种方法"></a>如何安全的在不同工程间安全地迁移 asset 数据？三种方法</h6><ul>
+<li>将 Assets 目录和 Library 目录一起迁移。</li>
+<li>导出包。</li>
+<li>使用assets Server服务器同步。</li>
+</ul>
+<h6 id="Mesh-Collider"><a href="#Mesh-Collider" class="headerlink" title="Mesh Collider"></a>Mesh Collider</h6><p>基于网格的碰撞器，更精确，单页更费性能。</p>
+<h6 id="OnEnable-、-Awake-、-Start的顺序"><a href="#OnEnable-、-Awake-、-Start的顺序" class="headerlink" title="OnEnable 、 Awake 、 Start的顺序"></a>OnEnable 、 Awake 、 Start的顺序</h6><ul>
+<li>Awake：激活的物体，在任何Start()函数之前。</li>
+<li>Start：在Update()函数第一帧之前被调用。</li>
+<li>OnEnable：在Awake之后，Start之前，即物体被启用的时候调用。</li>
+</ul>
+<h6 id="Update、FixedUpdate、LateUpdate的区别"><a href="#Update、FixedUpdate、LateUpdate的区别" class="headerlink" title="Update、FixedUpdate、LateUpdate的区别"></a>Update、FixedUpdate、LateUpdate的区别</h6><ul>
+<li>Update：没渲染一帧时执行，受渲染的复杂度以及设备性能的影响，时间间隔不固定。</li>
+<li>FixedUpdate：固定时间间隔的更新，可以设置时间间隔。</li>
+<li>LateUpdate：每帧所有的Update之后执行，可以用来做相机跟随。</li>
+</ul>
+<h6 id="脚本函数执行顺序"><a href="#脚本函数执行顺序" class="headerlink" title="脚本函数执行顺序"></a>脚本函数执行顺序</h6><ul>
+<li>Awake -&gt; OnEnable -&gt; Start</li>
+<li>Physics(物理相关) </li>
+<li>Event(事件OnMouseXX)</li>
+<li>Logic(游戏逻辑)</li>
+<li>渲染可见性()</li>
+<li>GUI</li>
+</ul>
+<h6 id="material-和-sharedmaterial-的区别？"><a href="#material-和-sharedmaterial-的区别？" class="headerlink" title="material 和 sharedmaterial 的区别？"></a>material 和 sharedmaterial 的区别？</h6><p>修改 sharedMaterial 将改变所有物体使用这个材质的外观，并且也改变储存在工程里的材质设置。 而material是一份独立拷贝，修改不会影响到其他物体的材质效果。</p>
+<h6 id="游戏动画有哪几种，以及其原理"><a href="#游戏动画有哪几种，以及其原理" class="headerlink" title="游戏动画有哪几种，以及其原理"></a>游戏动画有哪几种，以及其原理</h6><ul>
+<li>关节动画：把角色分成若干独立部分，一个部分对应一个网格模型，部分的动画连接成一个整体的动画，角色比较灵活。</li>
+<li>单一网络模型动画：也叫关键帧动画，模型整体的动画，可以设置每一帧的状态以及过渡效果，角色动画较真实。</li>
+<li>骨骼动画：结合以上两种，角色内部由骨骼组成，关节相连，外部添加蒙皮。</li>
+</ul>
+<h6 id="alpha-blend-工作原理"><a href="#alpha-blend-工作原理" class="headerlink" title="alpha blend 工作原理"></a>alpha blend 工作原理</h6><p>实际显示颜色 = 前景颜色 <em>Alpha/255 + 背景颜色 </em>(255-Alpha)/255</p>
+<h6 id="光照计算中的diffuse的计算公式"><a href="#光照计算中的diffuse的计算公式" class="headerlink" title="光照计算中的diffuse的计算公式"></a>光照计算中的diffuse的计算公式</h6><ul>
+<li>实际光照强度 I= 环境光 + 漫反射光 + 镜面高光。</li>
+<li>环境光： Iambient = 环境光强度 * 环境光颜色。</li>
+<li>漫反射光：Idiffuse = 漫反射光强度 <em> 漫反射光颜色 </em> （法向量·光源方向）。</li>
+<li>镜面反射光： Ispecular = 镜面光强度 <em> 镜面光颜色 </em> (R.V)^n （光的反射向量·观察者方向的n次方，n为光照系数）。</li>
+</ul>
+<h6 id="lod是什么，优缺点是什么"><a href="#lod是什么，优缺点是什么" class="headerlink" title="lod是什么，优缺点是什么"></a>lod是什么，优缺点是什么</h6><p>LOD指细节层次，可以根据显示的层次远近、位置等选用合适的细节表现形式，可以提升渲染性能，缺点就是美术方面麻烦一些，要做不同的细节模型，也增加了一套模型的大小。</p>
+<h6 id="模型的渲染流程"><a href="#模型的渲染流程" class="headerlink" title="模型的渲染流程"></a>模型的渲染流程</h6><p>模型的网格包含着顶点数据-》通过顶点着色器代码进行顶点着色-》顶点连接生成几何图元-》光栅化将图元转化为对应的像素点-》然后对这些像素进行片段着色-》着色完成后放置在帧缓存中等待渲染。</p>
+<h6 id="渲染过程坐标系转换（GPU的工作原理：绘制3D图像到像素点上）"><a href="#渲染过程坐标系转换（GPU的工作原理：绘制3D图像到像素点上）" class="headerlink" title="渲染过程坐标系转换（GPU的工作原理：绘制3D图像到像素点上）"></a>渲染过程坐标系转换（GPU的工作原理：绘制3D图像到像素点上）</h6><p>模型-视图-投影-透视-视窗变换：本地坐标-世界坐标-投影坐标-裁剪面坐标-普通窗口坐标-屏幕坐标</p>
+<h6 id="MipMap是什么？作用？"><a href="#MipMap是什么？作用？" class="headerlink" title="MipMap是什么？作用？"></a>MipMap是什么？作用？</h6><p>类似于LOD技术，但是不同的是，LOD针对的是模型资源，而Mipmap针对的纹理贴图资源，根据层次效果选用不同精度的贴图，设置了MipMap后默认生成八个贴图，增大内存，但会优化显存提升性能。</p>
+<h6 id="用u3d实现2d游戏，有几种方式？"><a href="#用u3d实现2d游戏，有几种方式？" class="headerlink" title="用u3d实现2d游戏，有几种方式？"></a>用u3d实现2d游戏，有几种方式？</h6><ul>
+<li>GUI</li>
+<li>摄像机设为 Orthographic ，用面片作为 2d 元素。</li>
+<li>第三方插件： NGUI 、 2dToolkit</li>
+</ul>
+<h6 id="u3d中碰撞器和触发器的区别？"><a href="#u3d中碰撞器和触发器的区别？" class="headerlink" title="u3d中碰撞器和触发器的区别？"></a>u3d中碰撞器和触发器的区别？</h6><p>碰撞器会有碰撞的效果， IsTrigger = false, 可以调用OnCollisionEnter/Stay/Exit 函数；触发器没有碰撞效果， isTrigger = true, 可以调用 OnTriggerEnter/stay/exit 函数。</p>
+<h6 id="几种施加力的方式"><a href="#几种施加力的方式" class="headerlink" title="几种施加力的方式"></a>几种施加力的方式</h6><p>rigidbody 的成员函数：AddForce/AddForceAtPosition</p>
+<h6 id="什么叫做链条关节"><a href="#什么叫做链条关节" class="headerlink" title="什么叫做链条关节"></a>什么叫做链条关节</h6><p>保持两个物体在一个固定距离内部相互移动而不产生作用力，但是达到固定距离后就会产生拉力，有点像弹簧。</p>
+<h6 id="旋转的方式"><a href="#旋转的方式" class="headerlink" title="旋转的方式"></a>旋转的方式</h6><ul>
+<li>自转：Rotate</li>
+<li>绕点旋转：RotateAround</li>
+</ul>
+<h6 id="什么是烘焙"><a href="#什么是烘焙" class="headerlink" title="什么是烘焙"></a>什么是烘焙</h6><p>讲场景中设置好的效果烘焙到场景贴图中，静态的，不需要再实时计算这部分光的效果，提升性能。</p>
+<h6 id="Clear-Flags-清除标记"><a href="#Clear-Flags-清除标记" class="headerlink" title="Clear Flags 清除标记"></a>Clear Flags 清除标记</h6><ul>
+<li>Skybox 天空盒</li>
+<li>Solid Color 纯色： 屏幕上的任何空的部分将显示当前相机的背景颜色。</li>
+<li>Depth Only 仅深度：多个相机时，使用深度优先覆盖，相机深度值大的覆盖值小的，可以保证在其上显示。</li>
+<li>Don’t Clear 不清除：每一帧的绘制会叠加。</li>
+</ul>
+<h6 id="什么是渲染管道？"><a href="#什么是渲染管道？" class="headerlink" title="什么是渲染管道？"></a>什么是渲染管道？</h6><p>显示器上为了显示出图像而经过的一系列变换处理，包括坐标变换、着色器处理、光栅化等。</p>
+<h6 id="如何优化内存？"><a href="#如何优化内存？" class="headerlink" title="如何优化内存？"></a>如何优化内存？</h6><p>最占内存的就是资源，包括网格数量、纹理的大小格式、动画、材质shader、字体、文本等，主要的就是纹理和网格的占用。</p>
+<ul>
+<li>纹理：大小尽量是2的幂次方，可以考虑使用图集整合到，格式unity自带多种格式，效率最高的是PVRTC有损压缩，但是失真比较大一些，效果最好的是RGBA32或ARGB32，具体要看效果平衡，android上考虑ETC格式。</li>
+<li>考虑关闭MipMap。</li>
+<li>降低模型的片面数，降低模型的骨骼数量，降低贴图的大小。</li>
+<li>AB加载的文件即时释放，使用Resources.UnloadUnusedAssets。</li>
+<li>使用光照贴图，LOD等。</li>
+<li>裁剪合并粒子系统。</li>
+</ul>
+<h6 id="Resources-Load和AssetBundle"><a href="#Resources-Load和AssetBundle" class="headerlink" title="Resources.Load和AssetBundle"></a>Resources.Load和AssetBundle</h6><ul>
+<li>Resources.Load只能加载Resources文件夹下的资源，主要是内置包资源。</li>
+<li>AssetBundle需要先打包成ab文件，可以从本地加载，但主要是从网络加载，可以做增量更新。</li>
+</ul>
+<h6 id="什么是协同程序？有什么用？"><a href="#什么是协同程序？有什么用？" class="headerlink" title="什么是协同程序？有什么用？"></a>什么是协同程序？有什么用？</h6><p>主线程运行之外另开一个任务运行。执行过程中,可以在任意位置使用yield语句控制何时恢复协同程序向下执行，缺点可能会堵塞。</p>
+<h5 id="用过的插件"><a href="#用过的插件" class="headerlink" title="用过的插件"></a>用过的插件</h5><p>DoTween、ShaderForge、EasyTouch、PoolManager、ShareSDK</p>
+<h6 id="Unity中，照相机的Clipping-Planes的作用是什么"><a href="#Unity中，照相机的Clipping-Planes的作用是什么" class="headerlink" title="Unity中，照相机的Clipping Planes的作用是什么"></a>Unity中，照相机的Clipping Planes的作用是什么</h6><p>剪裁平面，从相机到开始渲染和停止渲染之间的距离。</p>
+<h6 id="如何让GameObject在LoadLevel后不被卸载掉？"><a href="#如何让GameObject在LoadLevel后不被卸载掉？" class="headerlink" title="如何让GameObject在LoadLevel后不被卸载掉？"></a>如何让GameObject在LoadLevel后不被卸载掉？</h6><p>DontDestroyOnLoad。</p>
+<h6 id="静态批处理和动态批处理"><a href="#静态批处理和动态批处理" class="headerlink" title="静态批处理和动态批处理"></a>静态批处理和动态批处理</h6><ul>
+<li>动态批处理：unity自动完成的，拥有相同材质和尺寸的物体会批处理合并到一次Draw Call中。</li>
+<li>静态批处理：要求物体是静态的，且拥有相同材质的所有物体，进行合并。</li>
+</ul>
+<h6 id="Unity的时间系统"><a href="#Unity的时间系统" class="headerlink" title="Unity的时间系统"></a>Unity的时间系统</h6><p>有三部分组成：EventSystem负责管理，BaseInputModule负责监听输入，BaseRaycaster负责检测目标对象，具体的目标对象负责接收事件并处理。</p>
+<h6 id="在编辑场景时将GameObject设置为Static有何作用？"><a href="#在编辑场景时将GameObject设置为Static有何作用？" class="headerlink" title="在编辑场景时将GameObject设置为Static有何作用？"></a>在编辑场景时将GameObject设置为Static有何作用？</h6><p>可以实现遮挡剔除。</p>
+<h6 id="有A和B两组物体，有什么办法能够保证A组物体永远比B组物体先渲染？"><a href="#有A和B两组物体，有什么办法能够保证A组物体永远比B组物体先渲染？" class="headerlink" title="有A和B两组物体，有什么办法能够保证A组物体永远比B组物体先渲染？"></a>有A和B两组物体，有什么办法能够保证A组物体永远比B组物体先渲染？</h6><p>通过shader里面的渲染队列来设置优先级。</p>
+<h6 id="将图片的TextureType选项分别选为““Texture”和“Sprite”有什么区别"><a href="#将图片的TextureType选项分别选为““Texture”和“Sprite”有什么区别" class="headerlink" title="将图片的TextureType选项分别选为““Texture”和“Sprite”有什么区别"></a>将图片的TextureType选项分别选为““Texture”和“Sprite”有什么区别</h6><p>Sprite作为UI精灵使用，Texture作用模型贴图使用。Sprite需要2的整次幂，打包图片省资源。</p>
+<h6 id="什么是DrawCall？DrawCall高了又什么影响？如何降低DrawCall？"><a href="#什么是DrawCall？DrawCall高了又什么影响？如何降低DrawCall？" class="headerlink" title="什么是DrawCall？DrawCall高了又什么影响？如何降低DrawCall？"></a>什么是DrawCall？DrawCall高了又什么影响？如何降低DrawCall？</h6><p>通知GPU渲染一次的过程称为一次Draw Call。越大越耗性能。可以通过动态、静态批处理或调整shader，减少渲染通道。</p>
+<h6 id="水面倒影的渲染原理"><a href="#水面倒影的渲染原理" class="headerlink" title="水面倒影的渲染原理"></a>水面倒影的渲染原理</h6><p>对水面的贴图纹理进行扰动，可以使用shader在像素级别作扰动，需要的顶点少，速度快。</p>
+<h6 id="FSM有限状态机实现原理"><a href="#FSM有限状态机实现原理" class="headerlink" title="FSM有限状态机实现原理"></a>FSM有限状态机实现原理</h6><p>每个对象都维护自己的状态机，状态机的状态改变，靠状态触发器来调度。</p>
+<h6 id="你对资源加载有什么看法"><a href="#你对资源加载有什么看法" class="headerlink" title="你对资源加载有什么看法"></a>你对资源加载有什么看法</h6><p>如果一个资源比较大，那么最好提前加载好，比如登录的时候就加载好，一些频繁使用的模块可以考虑缓存一下，是在不行的话再用转圈等待的方式。</p>
+<h3 id="C-基础"><a href="#C-基础" class="headerlink" title="C#基础"></a><em>C#基础</em></h3><hr>
+<h6 id="C-和C-区别"><a href="#C-和C-区别" class="headerlink" title="C#和C++区别"></a>C#和C++区别</h6><p>类型安全，支持垃圾回收(无用内存回收),内存自动管理，没有指针，完全面向对象。</p>
+<h6 id="值类型与引用类型的区别"><a href="#值类型与引用类型的区别" class="headerlink" title="值类型与引用类型的区别:"></a>值类型与引用类型的区别:</h6><ul>
+<li>值类型通常是基本类型，存储数据值；引用存储的是数据的指针或引用。</li>
+<li>值类型存取速度快，引用类型存取速度慢。</li>
+<li>值在栈中，由系统自动释放；引用在堆上，需要手动管理或通过GC释放。</li>
+<li>值类型在声明的时候就已经分配了内存并初始化了；引用类型需要手动分配。</li>
+</ul>
+<h6 id="C-中所有引用类型的基类是什么"><a href="#C-中所有引用类型的基类是什么" class="headerlink" title="C# 中所有引用类型的基类是什么"></a>C# 中所有引用类型的基类是什么</h6><p><strong>System.Object</strong></p>
+<h6 id="ArrayList-和-List-的主要区别"><a href="#ArrayList-和-List-的主要区别" class="headerlink" title="ArrayList 和 List 的主要区别"></a>ArrayList 和 List 的主要区别</h6><p>ArrayList：需要拆装箱，耗性能且类型转换不安全。<br>List 是泛型接口，声明时需要固定类型。</p>
+<h6 id="GC（垃圾回收）产生的原因，并描述如何避免"><a href="#GC（垃圾回收）产生的原因，并描述如何避免" class="headerlink" title="GC（垃圾回收）产生的原因，并描述如何避免"></a>GC（垃圾回收）产生的原因，并描述如何避免</h6><p>GC是用来回收堆上的内存。避免的方式就是减少堆内存的分配：减少new的次数；有些变量可以改用全局变量或静态变量。</p>
+<h6 id="关键字-Sealed-用在类声明和函数声明时的作用"><a href="#关键字-Sealed-用在类声明和函数声明时的作用" class="headerlink" title="关键字 Sealed 用在类声明和函数声明时的作用"></a>关键字 Sealed 用在类声明和函数声明时的作用</h6><p>Sealed不允许继承，不允许重写。</p>
+<h6 id="private-，-public-，-protected-，-internal-的区别"><a href="#private-，-public-，-protected-，-internal-的区别" class="headerlink" title="private ， public ， protected ， internal 的区别"></a>private ， public ， protected ， internal 的区别</h6><p>internal：只能在包含该类的程序集中访问该类。</p>
+<h6 id="Net-与-Mono-的关系？"><a href="#Net-与-Mono-的关系？" class="headerlink" title=".Net 与 Mono 的关系？"></a>.Net 与 Mono 的关系？</h6><p>都是运行平台，.Net是window相关的，而Mono是跨平台的。</p>
+<h6 id="矩阵相乘的意义"><a href="#矩阵相乘的意义" class="headerlink" title="矩阵相乘的意义"></a>矩阵相乘的意义</h6><p>线性变换：旋转、缩放、平移、投影，速度比较快，是计算机内部的变换方式。</p>
+<h6 id="在不同分辨率下保持-UI-的一致性"><a href="#在不同分辨率下保持-UI-的一致性" class="headerlink" title="在不同分辨率下保持 UI 的一致性"></a>在不同分辨率下保持 UI 的一致性</h6><p>根据屏幕的宽高比跟原来的预设的屏幕分辨率作比较，用此结果修改摄像机的size。</p>
+<h6 id="String和stringBuilder"><a href="#String和stringBuilder" class="headerlink" title="String和stringBuilder"></a>String和stringBuilder</h6><p>String是常量，不支持字符串修改，会创建新的内存，stringBuilder是变量，对于频繁修改字符串可以节省内存。</p>
+<h6 id="ref参数和out参数是什么？有什么区别？"><a href="#ref参数和out参数是什么？有什么区别？" class="headerlink" title="ref参数和out参数是什么？有什么区别？"></a>ref参数和out参数是什么？有什么区别？</h6><p>有点类似指针变量。ref参数传入前必须初始化，常用来修改；out不必预先初始化，但需要在函数内初始化，常用来做多返回值。</p>
+<h6 id="委托"><a href="#委托" class="headerlink" title="委托"></a>委托</h6><p>委托是一种引用类型，是对方法的一种抽象。</p>
+<h6 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h6><p>把对象转换为容易传输的格式的过程，或者用于存储减少大小。</p>
+<h6 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h6><p>对消息的封装处理机制，我的理解是可以对委托的操作进行监听。</p>
+<h6 id="能用foreach遍历访问的对象需要实现接口或声明-方法的类型"><a href="#能用foreach遍历访问的对象需要实现接口或声明-方法的类型" class="headerlink" title="能用foreach遍历访问的对象需要实现接口或声明___方法的类型"></a>能用foreach遍历访问的对象需要实现接口或声明___方法的类型</h6><p>IEnumerable；GetEnumerator。注意foreach是只读的，不能一边遍历一边修改。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/09/Unity知识点/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-游戏策划" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h6 id="TinnyTrppers2"><a href="#TinnyTrppers2" class="headerlink" title="TinnyTrppers2"></a>TinnyTrppers2</h6><hr>
+<h6 id="欧陆战争"><a href="#欧陆战争" class="headerlink" title="欧陆战争"></a>欧陆战争</h6><hr>
+<h6 id="王国保卫战"><a href="#王国保卫战" class="headerlink" title="王国保卫战"></a>王国保卫战</h6><hr>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/09/游戏策划/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-C++知识点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><hr>
+<h6 id="stl"><a href="#stl" class="headerlink" title="stl"></a>stl</h6><p>C++标准模板库，常用的有容器、迭代器和一些算法函数。</p>
+<h6 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h6><p>模板是可以让类型动态化。主要有函数模板和类模板，目的就是能够实现类型无关。</p>
+<h6 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h6><ul>
+<li>序列式容器：vector、list（双向链表）、deques（双端队列：头尾操作元素快）。</li>
+<li>关联式容器：set、map。</li>
+</ul>
+<h6 id="迭代器的好处"><a href="#迭代器的好处" class="headerlink" title="迭代器的好处"></a>迭代器的好处</h6><p>不暴露内存显示，可以自定义新的实现，灵活。</p>
+<h6 id="虚表"><a href="#虚表" class="headerlink" title="虚表"></a>虚表</h6><p>存放虚函数地址的表，可以根据实际情况指向有效的函数，解决了继承、覆盖等问题。</p>
+<h6 id="虚函数的作用"><a href="#虚函数的作用" class="headerlink" title="虚函数的作用"></a>虚函数的作用</h6><p>虚函数作用是实现多态， 很多人都能理解这一点。但却不会回答下面这一点。更重要的，虚函数其实是实现封装，使得使用者不需要关心实现的细节。在很多设计模式中都是这样用法，例如Factory、Bridge、Strategy模式。 前两天在书上刚好看到这个问题，但在面试的时候却没想起来。</p>
+<h6 id="虚继承"><a href="#虚继承" class="headerlink" title="虚继承"></a>虚继承</h6><p>无论虚基类在继承体系中出现多少次，在派生类中都只包含唯一一个共享的虚基类对象。</p>
+<h6 id="深拷贝-amp-浅拷贝：默认拷贝构造函数执行的是浅拷贝"><a href="#深拷贝-amp-浅拷贝：默认拷贝构造函数执行的是浅拷贝" class="headerlink" title="深拷贝&amp;浅拷贝：默认拷贝构造函数执行的是浅拷贝"></a>深拷贝&amp;浅拷贝：默认拷贝构造函数执行的是浅拷贝</h6><ul>
+<li>浅拷贝：简单队成员变量拷贝数据值，如果有指针这种动态分配的数据，就会出错，因为拷贝的是地址，指向同一块内存。</li>
+<li>深拷贝：复制过程中，如果遇到动态资源如指针，就会重新分配空间。</li>
+<li>当数据成员中有指针时，必须要用深拷贝。</li>
+</ul>
+<h6 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h6><p>智能指针：将基本类型指针封装为类对象指针，并在析构函数里编写delete语句删除指针指向的内存空间。有点类似于golang中defer，保证生命周期结束后会释放内存。</p>
+<ul>
+<li>shared_ptr：共享指针，使用多个指向同一个对象的指针（例如数组中查找时）</li>
+<li>unique_ptr。</li>
+<li>weak_ptr：配合强引用shared_ptr的一个用来访问的弱指针，不计算引用计数，解决内存释放问题。</li>
+</ul>
+<h6 id="逗号表达式"><a href="#逗号表达式" class="headerlink" title="逗号表达式"></a>逗号表达式</h6><p>用逗号将两个表达式连接，=优先级高于逗号，因此限制性左侧，最终结果为右侧表达式的值。</p>
+<h6 id="运算符重载：operator"><a href="#运算符重载：operator" class="headerlink" title="运算符重载：operator"></a>运算符重载：operator</h6><p>为了实现自定义类型的运算，本质上是函数重载或多态。</p>
+<h6 id="友元函数"><a href="#友元函数" class="headerlink" title="友元函数"></a>友元函数</h6><p>允许外部类或函数去访问本类的所有成员变量，共享数据。提高效率，但破坏了封装的特性。</p>
+<h6 id="C-多态的形式"><a href="#C-多态的形式" class="headerlink" title="C++多态的形式"></a>C++多态的形式</h6><p>虚函数、模板、函数重载。</p>
+<h6 id="静态多态和动态多态"><a href="#静态多态和动态多态" class="headerlink" title="静态多态和动态多态"></a>静态多态和动态多态</h6><ul>
+<li>动态多态：就是继承、虚函数、重载。</li>
+<li>静态多态：基于模板的，即泛型编程。</li>
+</ul>
+<h6 id="extern"><a href="#extern" class="headerlink" title="extern"></a>extern</h6><p>由于c++支持分离式编译，文件可以单独编译，因此extern用来解决多个文件共享代码的问题，允许声明一个外部文件中定义的变量，extern的变量只能定义一次，多个地方声明引用该变量。有两个作用：对外开放和引用外部。</p>
+<h6 id="volatile变量"><a href="#volatile变量" class="headerlink" title="volatile变量"></a>volatile变量</h6><p>认为变量总是变化的，因此每次都从内存中取（而不会缓存在寄存器中）。</p>
+<h3 id="面试相关"><a href="#面试相关" class="headerlink" title="面试相关"></a>面试相关</h3><hr>
+<h6 id="最抽象的面试题：你对c-的理解，它是一门什么样的语言？"><a href="#最抽象的面试题：你对c-的理解，它是一门什么样的语言？" class="headerlink" title="最抽象的面试题：你对c++的理解，它是一门什么样的语言？"></a>最抽象的面试题：你对c++的理解，它是一门什么样的语言？</h6><h6 id="如何优化你的代码的？"><a href="#如何优化你的代码的？" class="headerlink" title="如何优化你的代码的？"></a>如何优化你的代码的？</h6><h6 id="标准库算法的复杂度"><a href="#标准库算法的复杂度" class="headerlink" title="标准库算法的复杂度"></a>标准库算法的复杂度</h6><p>例如 std::sort() 的平均复杂度、最坏复杂度（答 O(N^2) 和 O(N log N) 都算对），最坏情况什么时候出现。</p>
+<h6 id="list-的-insert-erase-与-vector-相比哪个快。"><a href="#list-的-insert-erase-与-vector-相比哪个快。" class="headerlink" title="list 的 insert()/erase() 与 vector 相比哪个快。"></a>list 的 insert()/erase() 与 vector 相比哪个快。</h6><h6 id="构造函数中调析构函数会有什么结果"><a href="#构造函数中调析构函数会有什么结果" class="headerlink" title="构造函数中调析构函数会有什么结果"></a>构造函数中调析构函数会有什么结果</h6><h6 id="了解多态么？它是怎么实现的？什么时候应该使用它？"><a href="#了解多态么？它是怎么实现的？什么时候应该使用它？" class="headerlink" title="了解多态么？它是怎么实现的？什么时候应该使用它？"></a>了解多态么？它是怎么实现的？什么时候应该使用它？</h6><h6 id="虚函数是怎样实现的？为什么还要区分虚函数和普通函数，都成虚函数不好么？"><a href="#虚函数是怎样实现的？为什么还要区分虚函数和普通函数，都成虚函数不好么？" class="headerlink" title="虚函数是怎样实现的？为什么还要区分虚函数和普通函数，都成虚函数不好么？"></a>虚函数是怎样实现的？为什么还要区分虚函数和普通函数，都成虚函数不好么？</h6><h6 id="你以前碰到的最莫名其妙的bug，以及如何解决的？"><a href="#你以前碰到的最莫名其妙的bug，以及如何解决的？" class="headerlink" title="你以前碰到的最莫名其妙的bug，以及如何解决的？"></a>你以前碰到的最莫名其妙的bug，以及如何解决的？</h6><hr>
+<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><hr>
+<h6 id="二分查找的递归和非递归"><a href="#二分查找的递归和非递归" class="headerlink" title="二分查找的递归和非递归"></a>二分查找的递归和非递归</h6><p>二分查找只适用于静态查找表，且适合线性有序表。若要对动态查找表进行高效率的查找，可采用下面介绍的几种特殊的<strong>二叉树或树</strong>作为表的组织形式。</p>
+<h6 id="二叉树搜索的版本"><a href="#二叉树搜索的版本" class="headerlink" title="二叉树搜索的版本"></a>二叉树搜索的版本</h6>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/09/C++知识点/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-asd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

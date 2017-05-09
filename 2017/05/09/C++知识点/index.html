@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | 受命于天</title>
+  <title>受命于天</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="基础 stlC++标准模板库，常用的有容器、迭代器和一些算法函数。 模板模板是可以让类型动态化。主要有函数模板和类模板，目的就是能够实现类型无关。 容器 序列式容器：vector、list（双向链表）、deques（双端队列：头尾操作元素快）。 关联式容器：set、map。  迭代器的好处不暴露内存显示，可以自定义新的实现，灵活。 虚表存放虚函数地址的表，可以根据实际情况指向有效的函数，解决了继承">
+<meta property="og:type" content="article">
 <meta property="og:title" content="受命于天">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/05/09/C++知识点/index.html">
 <meta property="og:site_name" content="受命于天">
+<meta property="og:description" content="基础 stlC++标准模板库，常用的有容器、迭代器和一些算法函数。 模板模板是可以让类型动态化。主要有函数模板和类模板，目的就是能够实现类型无关。 容器 序列式容器：vector、list（双向链表）、deques（双端队列：头尾操作元素快）。 关联式容器：set、map。  迭代器的好处不暴露内存显示，可以自定义新的实现，灵活。 虚表存放虚函数地址的表，可以根据实际情况指向有效的函数，解决了继承">
+<meta property="og:updated_time" content="2017-05-09T15:39:06.719Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="受命于天">
+<meta name="twitter:description" content="基础 stlC++标准模板库，常用的有容器、迭代器和一些算法函数。 模板模板是可以让类型动态化。主要有函数模板和类模板，目的就是能够实现类型无关。 容器 序列式容器：vector、list（双向链表）、deques（双端队列：头尾操作元素快）。 关联式容器：set、map。  迭代器的好处不暴露内存显示，可以自定义新的实现，灵活。 虚表存放虚函数地址的表，可以根据实际情况指向有效的函数，解决了继承">
   
   
     <link rel="icon" href="/favicon.png">
@@ -135,133 +139,169 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-C++知识点" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><hr>
+<h6 id="stl"><a href="#stl" class="headerlink" title="stl"></a>stl</h6><p>C++标准模板库，常用的有容器、迭代器和一些算法函数。</p>
+<h6 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h6><p>模板是可以让类型动态化。主要有函数模板和类模板，目的就是能够实现类型无关。</p>
+<h6 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h6><ul>
+<li>序列式容器：vector、list（双向链表）、deques（双端队列：头尾操作元素快）。</li>
+<li>关联式容器：set、map。</li>
+</ul>
+<h6 id="迭代器的好处"><a href="#迭代器的好处" class="headerlink" title="迭代器的好处"></a>迭代器的好处</h6><p>不暴露内存显示，可以自定义新的实现，灵活。</p>
+<h6 id="虚表"><a href="#虚表" class="headerlink" title="虚表"></a>虚表</h6><p>存放虚函数地址的表，可以根据实际情况指向有效的函数，解决了继承、覆盖等问题。</p>
+<h6 id="虚函数的作用"><a href="#虚函数的作用" class="headerlink" title="虚函数的作用"></a>虚函数的作用</h6><p>虚函数作用是实现多态， 很多人都能理解这一点。但却不会回答下面这一点。更重要的，虚函数其实是实现封装，使得使用者不需要关心实现的细节。在很多设计模式中都是这样用法，例如Factory、Bridge、Strategy模式。 前两天在书上刚好看到这个问题，但在面试的时候却没想起来。</p>
+<h6 id="虚继承"><a href="#虚继承" class="headerlink" title="虚继承"></a>虚继承</h6><p>无论虚基类在继承体系中出现多少次，在派生类中都只包含唯一一个共享的虚基类对象。</p>
+<h6 id="深拷贝-amp-浅拷贝：默认拷贝构造函数执行的是浅拷贝"><a href="#深拷贝-amp-浅拷贝：默认拷贝构造函数执行的是浅拷贝" class="headerlink" title="深拷贝&amp;浅拷贝：默认拷贝构造函数执行的是浅拷贝"></a>深拷贝&amp;浅拷贝：默认拷贝构造函数执行的是浅拷贝</h6><ul>
+<li>浅拷贝：简单队成员变量拷贝数据值，如果有指针这种动态分配的数据，就会出错，因为拷贝的是地址，指向同一块内存。</li>
+<li>深拷贝：复制过程中，如果遇到动态资源如指针，就会重新分配空间。</li>
+<li>当数据成员中有指针时，必须要用深拷贝。</li>
+</ul>
+<h6 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h6><p>智能指针：将基本类型指针封装为类对象指针，并在析构函数里编写delete语句删除指针指向的内存空间。有点类似于golang中defer，保证生命周期结束后会释放内存。</p>
+<ul>
+<li>shared_ptr：共享指针，使用多个指向同一个对象的指针（例如数组中查找时）</li>
+<li>unique_ptr。</li>
+<li>weak_ptr：配合强引用shared_ptr的一个用来访问的弱指针，不计算引用计数，解决内存释放问题。</li>
+</ul>
+<h6 id="逗号表达式"><a href="#逗号表达式" class="headerlink" title="逗号表达式"></a>逗号表达式</h6><p>用逗号将两个表达式连接，=优先级高于逗号，因此限制性左侧，最终结果为右侧表达式的值。</p>
+<h6 id="运算符重载：operator"><a href="#运算符重载：operator" class="headerlink" title="运算符重载：operator"></a>运算符重载：operator</h6><p>为了实现自定义类型的运算，本质上是函数重载或多态。</p>
+<h6 id="友元函数"><a href="#友元函数" class="headerlink" title="友元函数"></a>友元函数</h6><p>允许外部类或函数去访问本类的所有成员变量，共享数据。提高效率，但破坏了封装的特性。</p>
+<h6 id="C-多态的形式"><a href="#C-多态的形式" class="headerlink" title="C++多态的形式"></a>C++多态的形式</h6><p>虚函数、模板、函数重载。</p>
+<h6 id="静态多态和动态多态"><a href="#静态多态和动态多态" class="headerlink" title="静态多态和动态多态"></a>静态多态和动态多态</h6><ul>
+<li>动态多态：就是继承、虚函数、重载。</li>
+<li>静态多态：基于模板的，即泛型编程。</li>
+</ul>
+<h6 id="extern"><a href="#extern" class="headerlink" title="extern"></a>extern</h6><p>由于c++支持分离式编译，文件可以单独编译，因此extern用来解决多个文件共享代码的问题，允许声明一个外部文件中定义的变量，extern的变量只能定义一次，多个地方声明引用该变量。有两个作用：对外开放和引用外部。</p>
+<h6 id="volatile变量"><a href="#volatile变量" class="headerlink" title="volatile变量"></a>volatile变量</h6><p>认为变量总是变化的，因此每次都从内存中取（而不会缓存在寄存器中）。</p>
+<h3 id="面试相关"><a href="#面试相关" class="headerlink" title="面试相关"></a>面试相关</h3><hr>
+<h6 id="最抽象的面试题：你对c-的理解，它是一门什么样的语言？"><a href="#最抽象的面试题：你对c-的理解，它是一门什么样的语言？" class="headerlink" title="最抽象的面试题：你对c++的理解，它是一门什么样的语言？"></a>最抽象的面试题：你对c++的理解，它是一门什么样的语言？</h6><h6 id="如何优化你的代码的？"><a href="#如何优化你的代码的？" class="headerlink" title="如何优化你的代码的？"></a>如何优化你的代码的？</h6><h6 id="标准库算法的复杂度"><a href="#标准库算法的复杂度" class="headerlink" title="标准库算法的复杂度"></a>标准库算法的复杂度</h6><p>例如 std::sort() 的平均复杂度、最坏复杂度（答 O(N^2) 和 O(N log N) 都算对），最坏情况什么时候出现。</p>
+<h6 id="list-的-insert-erase-与-vector-相比哪个快。"><a href="#list-的-insert-erase-与-vector-相比哪个快。" class="headerlink" title="list 的 insert()/erase() 与 vector 相比哪个快。"></a>list 的 insert()/erase() 与 vector 相比哪个快。</h6><h6 id="构造函数中调析构函数会有什么结果"><a href="#构造函数中调析构函数会有什么结果" class="headerlink" title="构造函数中调析构函数会有什么结果"></a>构造函数中调析构函数会有什么结果</h6><h6 id="了解多态么？它是怎么实现的？什么时候应该使用它？"><a href="#了解多态么？它是怎么实现的？什么时候应该使用它？" class="headerlink" title="了解多态么？它是怎么实现的？什么时候应该使用它？"></a>了解多态么？它是怎么实现的？什么时候应该使用它？</h6><h6 id="虚函数是怎样实现的？为什么还要区分虚函数和普通函数，都成虚函数不好么？"><a href="#虚函数是怎样实现的？为什么还要区分虚函数和普通函数，都成虚函数不好么？" class="headerlink" title="虚函数是怎样实现的？为什么还要区分虚函数和普通函数，都成虚函数不好么？"></a>虚函数是怎样实现的？为什么还要区分虚函数和普通函数，都成虚函数不好么？</h6><h6 id="你以前碰到的最莫名其妙的bug，以及如何解决的？"><a href="#你以前碰到的最莫名其妙的bug，以及如何解决的？" class="headerlink" title="你以前碰到的最莫名其妙的bug，以及如何解决的？"></a>你以前碰到的最莫名其妙的bug，以及如何解决的？</h6><hr>
+<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><hr>
+<h6 id="二分查找的递归和非递归"><a href="#二分查找的递归和非递归" class="headerlink" title="二分查找的递归和非递归"></a>二分查找的递归和非递归</h6><p>二分查找只适用于静态查找表，且适合线性有序表。若要对动态查找表进行高效率的查找，可采用下面介绍的几种特殊的<strong>二叉树或树</strong>作为表的组织形式。</p>
+<h6 id="二叉树搜索的版本"><a href="#二叉树搜索的版本" class="headerlink" title="二叉树搜索的版本"></a>二叉树搜索的版本</h6>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/09/Unity知识点/" class="archive-article-date">
-  	<time datetime="2017-05-09T15:39:06.720Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/05/09/C++知识点/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/09/游戏策划/" class="archive-article-date">
-  	<time datetime="2017-05-09T15:39:06.720Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/09/C++知识点/" class="archive-article-date">
-  	<time datetime="2017-05-09T15:39:06.719Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2017/05/09/游戏策划/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/09/asd/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/09/asd/" class="archive-article-date">
-  	<time datetime="2017-05-09T15:14:03.194Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/09/初创/" class="archive-article-date">
-  	<time datetime="2017-05-09T10:41:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-09</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/09/初创/">初创</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -284,8 +324,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
