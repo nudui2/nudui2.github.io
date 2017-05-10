@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/10/hexo搭建/index.html">
 <meta property="og:site_name" content="受命于天">
 <meta property="og:description" content="痛点1hexo搭建在本机，单一客户端编辑固然ok，然不方便在多台终端中同时使用。 方案 1，选取云服务器作为中心服务器，此服务器上安装hexo并配置好github账号。 2，在github上创建项目“_posts”，将其pull到hexo的source目录下。 3，在服务器中通过脚本，每15min执行如下操作:  12341，github上pull最新_posts。2，hexo clean3，he">
-<meta property="og:updated_time" content="2017-05-10T02:33:52.645Z">
+<meta property="og:updated_time" content="2017-05-10T03:00:05.405Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多客户端使用hexo方案">
 <meta name="twitter:description" content="痛点1hexo搭建在本机，单一客户端编辑固然ok，然不方便在多台终端中同时使用。 方案 1，选取云服务器作为中心服务器，此服务器上安装hexo并配置好github账号。 2，在github上创建项目“_posts”，将其pull到hexo的source目录下。 3，在服务器中通过脚本，每15min执行如下操作:  12341，github上pull最新_posts。2，hexo clean3，he">
@@ -179,6 +179,9 @@
 <li>3，在服务器中通过脚本，每15min执行如下操作:</li>
 </ul>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>，github上pull最新_posts。</div><div class="line"><span class="number">2</span>，hexo clean</div><div class="line"><span class="number">3</span>，hexo g</div><div class="line"><span class="number">4</span>，hexo d</div></pre></td></tr></table></figure>
+<ul>
+<li>4，每个客户端都将_post项目pull在本机，每次书写玩md直接提交即可。</li>
+</ul>
 <h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">第三步中的脚本书写，最好能加入一个<span class="built_in">running</span>的标记，以防crontab的定时任务与手动部署冲突</div></pre></td></tr></table></figure>
 
       

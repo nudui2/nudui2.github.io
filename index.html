@@ -176,6 +176,9 @@
 <li>3，在服务器中通过脚本，每15min执行如下操作:</li>
 </ul>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>，github上pull最新_posts。</div><div class="line"><span class="number">2</span>，hexo clean</div><div class="line"><span class="number">3</span>，hexo g</div><div class="line"><span class="number">4</span>，hexo d</div></pre></td></tr></table></figure>
+<ul>
+<li>4，每个客户端都将_post项目pull在本机，每次书写玩md直接提交即可。</li>
+</ul>
 <h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">第三步中的脚本书写，最好能加入一个<span class="built_in">running</span>的标记，以防crontab的定时任务与手动部署冲突</div></pre></td></tr></table></figure>
 
       
